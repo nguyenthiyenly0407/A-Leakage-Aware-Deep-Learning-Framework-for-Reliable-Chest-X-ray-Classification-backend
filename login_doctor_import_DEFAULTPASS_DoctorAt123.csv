@@ -1,0 +1,4 @@
+name_doctor,date_of_birth_doctor,email_doctor,password_hash,gender,phone_number,created_at,is_active
+Nguyen Van A,1995-08-20,doctorA@gmail.com,$2b$12$gyXtjuEZEEMQVAcVIoRvH.6oM45E6eYOAZUQsekIF7rygBNfvZA02,Male,901234567,2025-12-12 09:00:00,True
+Tran Thi B,1992-03-14,doctorB@gmail.com,$2b$12$gyXtjuEZEEMQVAcVIoRvH.6oM45E6eYOAZUQsekIF7rygBNfvZA02,Female,912345678,2025-12-12 09:05:00,True
+Le Van C,1990-11-02,doctorC@gmail.com,$2b$12$gyXtjuEZEEMQVAcVIoRvH.6oM45E6eYOAZUQsekIF7rygBNfvZA02,Male,987654321,2025-12-12 09:10:00,True
