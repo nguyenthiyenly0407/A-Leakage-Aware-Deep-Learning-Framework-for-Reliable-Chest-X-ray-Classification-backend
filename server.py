@@ -4,8 +4,10 @@ from sqlalchemy import text
 from Database.connection import get_db, test_connection
 from API.auth.API_login import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
+from API.patient.API_patient import router as patient_router
 app = FastAPI()
 app.include_router(auth_router)
+app.include_router(patient_router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
