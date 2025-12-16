@@ -3,8 +3,16 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 from Database.connection import get_db, test_connection
 from API.auth.API_login import router as auth_router
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 app.include_router(auth_router)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.on_event("startup")
 async def startup():
     await test_connection()
