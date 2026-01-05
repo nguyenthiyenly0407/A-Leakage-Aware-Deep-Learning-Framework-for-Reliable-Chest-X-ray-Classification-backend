@@ -1,0 +1,33 @@
+# --- Bảo mật (QUAN TRỌNG) ---
+.env
+.env.*
+*.key
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtual Environment (Môi trường ảo) ---
+venv/
+.venv/
+env/
+.env/
+
+# --- IDE / Editor (Cấu hình máy cá nhân không nên đẩy lên) ---
+.vscode/
+.idea/
+*.swp
+
+# --- OS (File rác của hệ điều hành) ---
+.DS_Store
+Thumbs.db
+
+# --- Model AI (File nặng không nên đẩy lên Git thường) ---
+# Nếu file model .pth của ông nặng > 100MB thì nên ignore, 
+# hoặc dùng Git LFS. Nếu nhẹ thì bỏ dòng dưới này đi.
+
+
+# --- Legacy (Thư mục cũ nếu lỡ có tạo lại) ---
+static/

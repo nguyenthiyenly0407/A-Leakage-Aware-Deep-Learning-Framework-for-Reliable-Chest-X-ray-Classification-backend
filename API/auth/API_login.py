@@ -8,6 +8,9 @@ from .security import verify_password, create_access_token
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
+# ==========================================
+# ✅ DOCTOR LOGIN (Đã sửa lại key payload)
+# ==========================================
 @router.post("/doctor/login", response_model=TokenResponse)
 async def doctor_login(payload: LoginRequest, db: AsyncSession = Depends(get_db)):
     q = text("""
@@ -24,14 +27,18 @@ async def doctor_login(payload: LoginRequest, db: AsyncSession = Depends(get_db)
     if row["is_active"] is False:
         raise HTTPException(status_code=403, detail="Account is inactive")
 
+    # 👇 SỬA Ở ĐÂY: Đổi 'doctor_id' thành 'id_account'
     token = create_access_token({
         "sub": row["email_doctor"],
         "role": "doctor",
-        "doctor_id": row["id_doctor"],
+        "id_account": row["id_doctor"], # <--- QUAN TRỌNG: Phải đặt tên là id_account
     })
     return {"access_token": token, "token_type": "bearer"}
 
 
+# ==========================================
+# ✅ ADMIN LOGIN (Sửa luôn cho đồng bộ)
+# ==========================================
 @router.post("/admin/login", response_model=TokenResponse)
 async def admin_login(payload: LoginRequest, db: AsyncSession = Depends(get_db)):
     q = text("""
@@ -48,9 +55,10 @@ async def admin_login(payload: LoginRequest, db: AsyncSession = Depends(get_db))
     if row["is_active"] is False:
         raise HTTPException(status_code=403, detail="Account is inactive")
 
+    # 👇 SỬA Ở ĐÂY LUÔN
     token = create_access_token({
         "sub": row["email_admin"],
         "role": "admin",
-        "admin_id": row["id_admin"],
+        "id_account": row["id_admin"], # <--- Đồng bộ luôn
     })
     return {"access_token": token, "token_type": "bearer"}

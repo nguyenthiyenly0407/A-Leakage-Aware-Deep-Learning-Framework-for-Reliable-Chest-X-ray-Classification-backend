@@ -6,6 +6,7 @@ from API.auth.API_login import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
 from API.patient.API_patient import router as patient_router
 from API.analysis.API_analysis import router as analysis_router
+
 app = FastAPI()
 app.include_router(auth_router)
 app.include_router(patient_router)

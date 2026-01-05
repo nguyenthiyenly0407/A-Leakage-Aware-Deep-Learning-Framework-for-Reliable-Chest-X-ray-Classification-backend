@@ -11,7 +11,7 @@ import os
 # 1. CẤU HÌNH
 # ==========================================
 MODEL_PATH = "Ensemble_Hybrid_ResNet.pth"  # File model mới đã đóng gói
-IMAGE_PATH = "test4.jpg"              # <--- ĐỔI TÊN ẢNH CỦA BẠN Ở ĐÂY
+IMAGE_PATH = "20200923_eczema-la-benh-gi-1.jpg"              # <--- ĐỔI TÊN ẢNH CỦA BẠN Ở ĐÂY
 IMG_SIZE = 224
 
 # Danh sách 9 Class (Đã bỏ Systemic Disease hay gì đó tùy theo folder train của bạn)
