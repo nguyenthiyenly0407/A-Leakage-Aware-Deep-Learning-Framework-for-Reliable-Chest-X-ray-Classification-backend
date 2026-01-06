@@ -6,11 +6,12 @@ from API.auth.API_login import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
 from API.patient.API_patient import router as patient_router
 from API.analysis.API_analysis import router as analysis_router
-
+from API.Chart.stats_router import router as stats_router
 app = FastAPI()
 app.include_router(auth_router)
 app.include_router(patient_router)
 app.include_router(analysis_router)
+app.include_router(stats_router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
