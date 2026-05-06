@@ -52,7 +52,7 @@ async def get_history(
     count_query = f"""
         SELECT COUNT(*) 
         FROM skin_analysis sa
-        JOIN patient p ON sa.id_patient = p.id_patient
+        JOIN patients p ON sa.id_patient = p.id_patient
         WHERE {base_conditions}
     """
     total_result = await db.execute(text(count_query), params)
@@ -73,8 +73,8 @@ async def get_history(
                 WHEN sa.doctor_diagnosis = sa.ai_prediction THEN 'correct'
                 ELSE 'incorrect'
             END as status
-        FROM skin_analysis sa
-        JOIN patient p ON sa.id_patient = p.id_patient
+    FROM skin_analysis sa
+    JOIN patients p ON sa.id_patient = p.id_patient
         WHERE {base_conditions}
         ORDER BY sa.created_at DESC 
         LIMIT :limit OFFSET :offset

@@ -14,4 +14,4 @@ class PatientOut(BaseModel):
     date_of_birth_patient: date
     gender: Optional[str] = None
     phone_number: Optional[str] = None
-    created_at: datetime
+    created_at: Optional[datetime] = None

@@ -201,16 +201,17 @@ def safe_json_dumps(obj) -> str:
     return json.dumps(obj, ensure_ascii=False)
 
 async def assert_foreign_keys_exist(db: AsyncSession, id_patient: int, id_doctor: int) -> None:
-    q_patient = text("SELECT 1 FROM patient WHERE id_patient = :id_patient LIMIT 1;")
+    # Table name is 'patients' in the schema and models
+    q_patient = text("SELECT 1 FROM patients WHERE id_patient = :id_patient LIMIT 1;")
     q_doctor = text("SELECT 1 FROM login_doctor WHERE id_doctor = :id_doctor LIMIT 1;")
 
     rp = await db.execute(q_patient, {"id_patient": id_patient})
     rd = await db.execute(q_doctor, {"id_doctor": id_doctor})
 
     if rp.first() is None:
-        raise HTTPException(status_code=400, detail=f"id_patient={id_patient} not found in patient table.")
+        raise HTTPException(status_code=400, detail=f"id_patient={id_patient} not found in patients table.")
     if rd.first() is None:
-        raise HTTPException(status_code=400, detail=f"id_doctor={id_doctor} not found in doctor table.")
+        raise HTTPException(status_code=400, detail=f"id_doctor={id_doctor} not found in login_doctor table.")
 
 
 def compute_mask_guided_heatmap_bytes(

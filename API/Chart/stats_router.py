@@ -18,12 +18,12 @@ async def get_dashboard_stats(
     # =========================================================
     
     # Query 1: Đếm TẤT CẢ bệnh nhân đang quản lý (Để sửa lỗi hiển thị số 1)
-    q_total = text("SELECT COUNT(*) FROM patient WHERE id_doctor = :uid")
+    q_total = text("SELECT COUNT(*) FROM patients WHERE id_doctor = :uid")
     total_all = await db.scalar(q_total, {"uid": my_doctor_id})
 
     # Query 2: Đếm bệnh nhân MỚI trong tháng này (Để tính %)
     q_this_month = text("""
-        SELECT COUNT(*) FROM patient 
+        SELECT COUNT(*) FROM patients 
         WHERE id_doctor = :uid 
         AND date_trunc('month', created_at) = date_trunc('month', CURRENT_DATE)
     """)
@@ -31,7 +31,7 @@ async def get_dashboard_stats(
 
     # Query 3: Đếm bệnh nhân tháng trước
     q_last_month = text("""
-        SELECT COUNT(*) FROM patient 
+        SELECT COUNT(*) FROM patients 
         WHERE id_doctor = :uid 
         AND date_trunc('month', created_at) = date_trunc('month', CURRENT_DATE - INTERVAL '1 month')
     """)
@@ -100,8 +100,8 @@ async def get_dashboard_stats(
                 ELSE 'AI Sai'
             END as status,
             TO_CHAR(sa.created_at, 'HH24:MI DD/MM') as time
-        FROM skin_analysis sa
-        JOIN patient p ON sa.id_patient = p.id_patient
+    FROM skin_analysis sa
+    JOIN patients p ON sa.id_patient = p.id_patient
         WHERE sa.id_doctor = :uid
         ORDER BY sa.created_at DESC
         LIMIT 4

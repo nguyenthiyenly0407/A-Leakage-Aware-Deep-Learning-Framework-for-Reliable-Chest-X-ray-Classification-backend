@@ -27,7 +27,7 @@ async def add_patient(
     my_doctor_id = current_user.get('id_account') or current_user.get('id_doctor')
 
     q = text("""
-        INSERT INTO patient (name_patient, date_of_birth_patient, gender, phone_number, id_doctor)
+        INSERT INTO patients (name_patient, date_of_birth_patient, gender, phone_number, id_doctor)
         VALUES (:name_patient, :date_of_birth_patient, :gender, :phone_number, :id_doctor)
         RETURNING id_patient, name_patient, date_of_birth_patient, gender, phone_number, created_at;
     """)
@@ -58,7 +58,7 @@ async def get_patients(
     # 👇 CÂU QUERY QUAN TRỌNG: Thêm WHERE id_doctor
     sql_query = """
         SELECT id_patient, name_patient, date_of_birth_patient, gender, phone_number, created_at
-        FROM patient
+        FROM patients
         WHERE id_doctor = :id_doctor 
     """
     
@@ -99,7 +99,7 @@ async def get_patient(
 
     q = text("""
         SELECT id_patient, name_patient, date_of_birth_patient, gender, phone_number, created_at
-        FROM patient
+        FROM patients
         WHERE id_patient = :id_patient 
           AND id_doctor = :id_doctor  -- 🔒 CHỐT CHẶN BẢO MẬT
         LIMIT 1;
@@ -126,7 +126,7 @@ async def update_patient(
     my_doctor_id = current_user.get('id_account') or current_user.get('id_doctor')
 
     q = text("""
-        UPDATE patient
+        UPDATE patients
         SET name_patient = :name_patient,
             date_of_birth_patient = :date_of_birth_patient,
             gender = :gender,
@@ -162,7 +162,7 @@ async def delete_patient(
 
     try:
         q = text("""
-            DELETE FROM patient 
+            DELETE FROM patients 
             WHERE id_patient = :id_patient 
               AND id_doctor = :id_doctor -- 🔒 CHỈ XÓA CỦA MÌNH
             RETURNING id_patient;
