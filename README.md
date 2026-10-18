@@ -1,10 +1,12 @@
-# A Leakage-Aware Deep Learning Framework for Reliable Chest X-ray Classification 🫁
+# A Leakage-Aware Deep Learning Framework for Reliable Chest X-ray Classification 
+*Conference paper (MAPR 2026, Scopus-indexed)*
 
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.x-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > **Authors:** Ly Yen Nguyen-Thi, Linh To Tran, Thien B. Nguyen-Tat
 > **Institution:** University of Information Technology, VNU-HCM
+> **DOI:** 10.1109/mapr72750.2026.11685789
 
 ## Overview:
 This repository contains the implementation of a deep learning framework designed for the reliable multi-class classification of Chest X-rays (CXR). Our work addresses two critical issues in medical image analysis: **data leakage** and **model interpretability**.
