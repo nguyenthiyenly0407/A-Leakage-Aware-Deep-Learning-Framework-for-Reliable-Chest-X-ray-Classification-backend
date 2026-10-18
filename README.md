@@ -20,6 +20,8 @@ This repository contains the implementation of a deep learning framework designe
 *   **High Performance:** Utilizing an **EfficientNet-B0** backbone, the classification model achieves **95.57% accuracy** and a **96.74% macro-F1 score** across four categories: COVID-19, Lung Opacity, Viral Pneumonia, and Normal. The U-Net segmentation achieved a **0.9861 Dice coefficient**.
 ## Architecture:
 <img src="https://github.com/user-attachments/assets/7128bade-5a46-4647-9b29-4f8651d7d0a4" style="background-color: white; padding: 10px; border-radius: 5px;" />
+
+
 ## Repository Structure (Backend API)
 This repository contains the backend code for deploying the web-based diagnostic system (as described in Section VI of our paper).
 
